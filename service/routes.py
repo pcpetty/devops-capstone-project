@@ -67,6 +67,8 @@ def create_accounts():
 ######################################################################
 # READ AN ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts/<int:account_id>", methods=["GET"])
 def get_accounts(account_id):
     """
@@ -78,9 +80,12 @@ def get_accounts(account_id):
     if not account:
         abort(status.HTTP_404_NOT_FOUND, f"Account with id [{account_id}] could not be found.")
     return account.serialize(), status.HTTP_200_OK
+
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts/<int:account_id>", methods=["PUT"])
 def update_account(account_id):
     """
@@ -98,15 +103,28 @@ def update_account(account_id):
     db.session.commit()
     # Return updated account
     return jsonify(account.serialize()), 200
-# ... place you code here to UPDATE an account ...
-
 
 ######################################################################
 # DELETE AN ACCOUNT
 ######################################################################
 
-# ... place you code here to DELETE an account ...
 
+@app.route("/accounts/<int:account_id>", methods=["DELETE"])
+def delete_account(account_id):
+    """
+    Delete an Account
+    """
+    # Fetch the account from the datavase
+    account = Account.query.get(account_id)
+    # If the account doesn't exist, return 404 Not Found
+    if not account:
+        return jsonify({"error": "Account not found"}), 404
+    # Delete the account
+    db.session.delete(account)
+    db.session.commit() # Save changes
+    
+    # Return 204 No Content (successful deletion)
+    return "", 204
 
 ######################################################################
 #  U T I L I T Y   F U N C T I O N S
