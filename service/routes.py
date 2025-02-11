@@ -62,6 +62,7 @@ def create_accounts():
 # LIST ALL ACCOUNTS
 ######################################################################
 
+
 @app.route("/accounts", methods=["GET"])
 def list_accounts():
     """
@@ -102,7 +103,7 @@ def update_account(account_id):
     Update an existing account
     """
     # Fetch the account
-    account = Account.query.get(account_id) 
+    account = Account.query.get(account_id)
     if not account:
         return jsonify({"error": "Account not found"}), 404
     # Extract and update fields
@@ -131,8 +132,7 @@ def delete_account(account_id):
         return jsonify({"error": "Account not found"}), 404
     # Delete the account
     db.session.delete(account)
-    db.session.commit() # Save changes
-    
+    db.session.commit()
     # Return 204 No Content (successful deletion)
     return "", 204
 
