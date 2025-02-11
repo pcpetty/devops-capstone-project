@@ -144,7 +144,7 @@ class TestAccountService(TestCase):
         # Create a test account
         account = self._create_accounts(1)[0]
         # Define the updated data
-        updated_data = {"name": "Updated Name", "email": "newemail@example.com"}
+        updated_data = {"name": "Updated Name", "email": "newemail@example.com", "phone_number": "555-111"}
         # Send the PUT request
         resp = self.client.put(f"{BASE_URL}/{account.id}", json=updated_data, content_type="application/json")
         # Assert that the response code is 200 OK

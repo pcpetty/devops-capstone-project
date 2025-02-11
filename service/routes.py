@@ -110,6 +110,8 @@ def update_account(account_id):
     data = request.get_json()
     account.name = data.get("name", account.name)
     account.email = data.get("email", account.email)
+    account.address = data.get("address", account.address)
+    account.phone_number = data.get("phone_number", account.phone_number)
     # Commit changes
     db.session.commit()
     # Return updated account
