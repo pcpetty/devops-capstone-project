@@ -72,7 +72,6 @@ def list_accounts():
     results = [account.serialize() for account in accounts]
     # Return JSON response
     return jsonify(results), 200
-    
 
 ######################################################################
 # READ AN ACCOUNT

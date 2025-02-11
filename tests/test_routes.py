@@ -181,4 +181,3 @@ class TestAccountService(TestCase):
         self.assertIsInstance(data, list)
         #Ensure we received the expected number of accounts
         self.assertEqual(len(data), 3)
-        
