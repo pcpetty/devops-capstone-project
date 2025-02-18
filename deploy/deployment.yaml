@@ -40,3 +40,9 @@ spec:
               secretKeyRef:
                 name: postgresql
                 key: database-user
+      spec:
+        template:
+          spec:
+            containers:
+            - image: IMAGE_NAME_HERE
+              name: accounts
